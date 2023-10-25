@@ -9,7 +9,7 @@ function GetStarted() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('http://172.16.0.6:3000/addClient', { 
+    axios.post('http://localhost:3024/addClient', { 
       clientName: clientName, 
       clientEmail: clientEmail, // Fixed typo in key
       clientNote: clientNote   // Fixed typo in key
