@@ -1,0 +1,104 @@
+body {
+  align-items: center;
+  font-family: Arial;
+  background: var(--bgcolor);
+  color: var(--bodyfontcolor);
+  min-width: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#root {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
+  
+}
+
+header {
+  width: 100%;
+  text-align: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #ffffff;
+  color: #111;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+ text-decoration: underline;
+ color: var(--bodyfontheadingcolor)
+}
+
+p {
+  padding-left: 5PT;
+}
+
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+  
+  /*
+  border-color: var(--framecolor);
+  border: solid 1px;
+  border-bottom: none;
+  */
+  width: auto;
+  padding: 2%;
+  /* display: none;
+  width: 100%;
+  min-height: 50px;
+  line-height: 2rem;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  */
+}
+
+footer {
+  color: var(--footerfontcolor);
+  text-align: right;
+  /* margin-bottom: 0px; */
+  border-top: solid 1pt;
+  height: 30px;
+  padding-top: 8px;
+  width: auto;
+}
+
+button {
+  max-width: 8rem;
+  margin-top: 1rem;
+}
+
+form {
+  padding: 2%;
+  margin-bottom: 1rem;
+  
+}
+
