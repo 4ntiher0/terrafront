@@ -1,56 +1,71 @@
-import React, { useState } from 'react'; 
-import axios from 'axios';
+import React, { useState } from 'react';
 
-function GetStarted() {
-  const [clientName, setClientName] = useState('');
-  const [clientEmail, setClientEmail] = useState('');
-  const [clientNote, setClientNote] = useState(''); // Fixed typo in variable name
+function YourFormComponent() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    note: '', // Added 'note' field
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-    axios.post('http://localhost:3024/addClient', { 
-      clientName: clientName, 
-      clientEmail: clientEmail, // Fixed typo in key
-      clientNote: clientNote   // Fixed typo in key
-    })
-      .then(response => {
-        console.log('Your information has been added successfully:', response.data);
-        setClientName(''); // Resetting the input fields
-        setClientEmail('');
-        setClientNote('');
-      })
-      .catch(error => console.error('Error adding client:', error));
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch('https://terra-server.clemeons.workers.dev/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+      // Handle success, e.g., show a success message
+    } else {
+      console.error('Error submitting form:', response.status);
+      // Handle error, e.g., show an error message
+    }
+  };
 
   return (
-    <div>
-      <h2>Get Started:</h2>
-        <h3>Contact US!</h3>
-        <p>Ready to unlock the full potential of your land development projects? Contact us today for a consultation and take the first step towards turning your vision into reality.</p>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          value={clientName} 
-          onChange={(e) => setClientName(e.target.value)} 
-          placeholder="Name" 
-        /> <br />
-        <input 
-          type="email" 
-          value={clientEmail} 
-          onChange={(e) => setClientEmail(e.target.value)} 
-          placeholder="Email" 
-        /> <br />
-        <input 
-          type="text" 
-          value={clientNote} 
-          onChange={(e) => setClientNote(e.target.value)} 
-          placeholder="Note" 
-        /> <br />
-        <button type="submit">Submit</button>
+    <div>      <h2>Get Started:</h2>
+    <h3>Contact US!</h3>
+    <p>Ready to unlock the full potential of your land development projects? Contact us today for a consultation and take the first step towards turning your vision into reality.</p>
+    <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          placeholder="Name"
+        /><br/>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          placeholder="Email"
+        /><div><br/><textarea
+        name="note"
+        value={formData.note}
+        onChange={handleInputChange}
+        placeholder="Your Note"
+        rows="4" // Adjust the number of rows as needed
+      /></div>
+        <div>
+          <button type="submit">Submit</button></div>
+        
       </form>
     </div>
   );
 }
 
-export default GetStarted;
+export default YourFormComponent;
